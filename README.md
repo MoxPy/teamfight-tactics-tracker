@@ -1,9 +1,11 @@
 # Teamfight Tactics Tracker
 
-Teamfight Tactics Tracker è una semplice applicazione da riga di comando scritta in C# che ti consente di tenere traccia delle tue partite a Teamfight Tactics (TFT). Con questa app, puoi segnarti informazioni sui personaggi, gli oggetti, i livelli, il piazzamento, le abilità scelte e i tratti usati nelle tue partite a TFT.
+Teamfight Tactics Tracker è una semplice applicazione da riga di comando scritta in C# che ti consente di tenere traccia delle tue partite a Teamfight Tactics (TFT). Con questa app, puoi salvare in un file CSV informazioni sui personaggi, gli oggetti, i livelli, il piazzamento, le abilità scelte e i tratti usati nelle tue partite a TFT.
+
+<img width="997" alt="Screenshot 2023-11-04 alle 19 49 03" src="https://github.com/MoxPy/teamfight-tactics-tracker/assets/80635030/b6410cc4-e701-4c73-9f9b-862484d453a1">
+<img width="618" alt="Screenshot 2023-11-04 alle 19 51 03" src="https://github.com/MoxPy/teamfight-tactics-tracker/assets/80635030/adcea685-b369-46bb-8d32-82fef8cd0f2f">
 
 ### Caratteristiche
-
 Registra informazioni sulle tue partite a TFT, inclusi personaggi, oggetti, livelli, piazzamento, abilità e tratti.
 Archivia i dati delle tue partite in un file CSV per facilitare l'analisi e la revisione.
 
