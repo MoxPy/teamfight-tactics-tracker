@@ -1,18 +1,6 @@
-﻿namespace Tracky
+﻿
+namespace Tracky
 {
-    class Personaggio
-    {
-        public string Nome { get; set; }
-        public List<string> Oggetti { get; set; }
-        public int Livello { get; set; }
-    }
-
-    class Tratto
-    {
-        public string Nome { get; set; }
-        public int Livello { get; set; }
-    }
-
     class Program
     {
         static void Main(string[] args)
@@ -22,16 +10,16 @@
             // Assegnazione variabili
             bool phaseOne = false;
             bool phaseTwo = false;
-            int limiteNomi = 10;
-            int limiteAuguments = 3;
-            int limiteItems = 3;
-            List<Personaggio> personaggi = new List<Personaggio>();
+            int limitNames = 10;
+            int limitAuguments = 3;
+            int limitItems = 3;
+            List<Champion> champions = new List<Champion>();
             List<string> auguments = new List<string>();
-            List<Tratto> tratti = new List<Tratto>();
+            List<Trait> traits = new List<Trait>();
             //
             
             Console.Write("Quanto ti sei classificato? ");
-            string piazzamento = Console.ReadLine();
+            string placement = Console.ReadLine();
             
             Console.Write("Inserisci la tua Leggenda: ");
             string legend = Console.ReadLine();
@@ -39,11 +27,11 @@
             Console.Write("Inserisci l'augument principale della partita: ");
             string mainAugument = Console.ReadLine();
             
-            while (personaggi.Count < limiteNomi)
+            while (champions.Count < limitNames)
             {
                 Console.Write("Inserisci un personaggio, solo il nome (o premi INVIO per terminare): ");  
                 
-                Personaggio pg = new Personaggio();
+                Champion pg = new Champion();
 
                 string name = Console.ReadLine();
                 if (string.IsNullOrWhiteSpace(name))
@@ -51,15 +39,15 @@
                     phaseOne = true;
                     break;
                 }
-                pg.Nome = name;
+                pg.Name = name;
                 Console.Write($"Livello di {name}: "); 
-                string lvlPersonaggio = Console.ReadLine();
-                int livello;
-                if (int.TryParse(lvlPersonaggio, out livello))
+                string championLvl = Console.ReadLine();
+                int level;
+                if (int.TryParse(championLvl, out level))
                 {
-                    pg.Livello = livello;
-                    Console.WriteLine($"Hai aggiunto {pg.Nome} livello: {pg.Livello}");
-                    personaggi.Add(pg);
+                    pg.Level = level;
+                    Console.WriteLine($"Hai aggiunto {pg.Name} livello: {pg.Level}");
+                    champions.Add(pg);
                 }
                 else
                 {
@@ -74,9 +62,9 @@
             {
                 Console.WriteLine("FASE DUE");
                 Console.WriteLine("|||||||||||||\nPersonaggi inseriti:");
-                for (int i = 0; i < personaggi.Count; i++)
+                for (int i = 0; i < champions.Count; i++)
                 {
-                    Console.WriteLine($"{i + 1}. {personaggi[i].Nome}");
+                    Console.WriteLine($"{i + 1}. {champions[i].Name}");
                 }
 
                 Console.Write("Seleziona un numero per assegnare un oggetto ad un personaggio (o premi INVIO per andare allo step successivo): ");
@@ -87,9 +75,9 @@
                     break;
                 }
 
-                if (int.TryParse(inputScelta, out int scelta) && scelta >= 1 && scelta <= personaggi.Count)
+                if (int.TryParse(inputScelta, out int scelta) && scelta >= 1 && scelta <= champions.Count)
                 {
-                    var personaggio = personaggi[scelta - 1];
+                    var champ = champions[scelta - 1];
                     List<string> items = new List<string>();
 
                     while (true)
@@ -99,7 +87,7 @@
                             phaseTwo = true;
                             break;
                         }
-                        Console.Write($"Inserisci un oggetto per {personaggio.Nome} (o premi INVIO per terminare l'aggiunta di oggetti a {personaggio.Nome}): ");
+                        Console.Write($"Inserisci un oggetto per {champ.Name} (o premi INVIO per terminare l'aggiunta di oggetti a {champ.Name}): ");
                         string item = Console.ReadLine();
                         if (string.IsNullOrWhiteSpace(item))
                         {
@@ -111,14 +99,14 @@
 
                     if (items.Count > 0)
                     {
-                        Console.WriteLine($"Hai assegnato i seguenti oggetti al personaggio {personaggio.Nome}:");
+                        Console.WriteLine($"Hai assegnato i seguenti oggetti al personaggio {champ.Name}:");
 
                         foreach (var i in items)
                         {
                             Console.WriteLine(i);
                         }
 
-                        personaggio.Oggetti = new List<string>(items);
+                        champ.Items = new List<string>(items);
                     }
                 }
 
@@ -139,15 +127,15 @@
                     }
                     Console.WriteLine("Livello tratto");
                     string traitLevelStr = Console.ReadLine();
-                    Tratto trait = new Tratto();
+                    Trait trait = new Trait();
 
-                    trait.Nome = traitName;
+                    trait.Name = traitName;
                     if (int.TryParse(traitLevelStr, out int traitLevel))
                     {
-                        trait.Livello = traitLevel;
+                        trait.Level = traitLevel;
                     }
 
-                    tratti.Add(trait);
+                    traits.Add(trait);
                 }
                 Console.WriteLine("Vuoi continuare ad aggiungere tratti? (s/n)");
                 string continueAdding = Console.ReadLine();
@@ -158,7 +146,7 @@
             }
 
             
-            while (auguments.Count < limiteAuguments)
+            while (auguments.Count < limitAuguments)
             {
                 Console.WriteLine("Aggiungi gli augument che hai selezionato (o premi INVIO per uscire):");
                 string aug = Console.ReadLine();
@@ -171,7 +159,7 @@
             
             Console.WriteLine("\n||||||||||||||| \nRiassunto finale\n|||||||||||||||\n");
             Console.WriteLine("\n||\nPIAZZAMENTO\n||\n");
-            Console.WriteLine($"Sei arrivato: {piazzamento}");
+            Console.WriteLine($"Sei arrivato: {placement}");
             Console.WriteLine("\n||\nLEGGENDA\n||\n");
             Console.WriteLine($"La tua leggenda: {legend}");
             Console.WriteLine("\n||\nAUGUMENT\n||\n");
@@ -183,28 +171,28 @@
             }
             Console.WriteLine("\n||\nTRATTI\n||\n");
             Console.WriteLine("I tuoi tratti attivi per questa partita:");
-            foreach (var t in tratti)
+            foreach (var t in traits)
             {
-                Console.WriteLine($"Nome: {t.Nome}\nLivello: {t.Livello}");
+                Console.WriteLine($"Nome: {t.Name}\nLivello: {t.Level}");
             }
             Console.WriteLine("\n||\nPERSONAGGI\n||\n");
-            foreach (var personaggio in personaggi)
+            foreach (var champion in champions)
             {
-                if (personaggio.Oggetti != null && personaggio.Oggetti.Count > 0)
+                if (champion.Items != null && champion.Items.Count > 0)
                 {
-                    Console.WriteLine($"\n{personaggio.Nome.ToUpper()} è livello {personaggio.Livello} con:");
-                    if (personaggio.Oggetti.Count > 0)
+                    Console.WriteLine($"\n{champion.Name.ToUpper()} è livello {champion.Level} con:");
+                    if (champion.Items.Count > 0)
                     { 
-                        foreach (var oggetto in personaggio.Oggetti)
+                        foreach (var item in champion.Items)
                         {
-                            Console.WriteLine(oggetto);
+                            Console.WriteLine(item);
                         }
                     
                     }
                 }
                 else
                 {
-                    Console.WriteLine($"\n{personaggio.Nome.ToUpper()} è livello {personaggio.Livello} senza oggetti");
+                    Console.WriteLine($"\n{champion.Name.ToUpper()} è livello {champion.Level} senza oggetti");
                 }
                 
             }
@@ -212,110 +200,48 @@
             while (true)
             {
                 Console.WriteLine("Vuoi salvare la partita? s/n");
-                string salvaPartita = Console.ReadLine();
-                if (salvaPartita.Equals("n", StringComparison.OrdinalIgnoreCase))
+                string saveMatch = Console.ReadLine();
+                if (saveMatch.Equals("n", StringComparison.OrdinalIgnoreCase))
                 {
                     break;
-                } else if (salvaPartita.Equals("s", StringComparison.OrdinalIgnoreCase))
+                } else if (saveMatch.Equals("s", StringComparison.OrdinalIgnoreCase))
                 {
-                    Console.WriteLine("Inserisci il path del file (senza estensioni, es. /Users/utente/Desktop/teamfight)");
-                    string filePath = Console.ReadLine();
-                    string suff = ".csv";
-                    int pIndex = 0;
-                    using (StreamWriter sw = new StreamWriter(filePath + suff))
+                    DataManagement dataManager = new DataManagement();
+                    bool saveIsOk = false;
+                    while (true)
                     {
-                        // Dati dei personaggi
-                        sw.WriteLine("Personaggi,Livello Personaggio,Oggetti Personaggio,Leggenda,Piazzamento,Augument Principale,Auguments,Tratti,Livello Tratti");
-                        foreach (var personaggio in personaggi)
+                        async Task SaveGameTask()
                         {
-                            if (personaggio.Oggetti != null)
+                            Console.WriteLine("Che tipo di salvataggio vuoi utilizzare (inserisci il numero corrispondente alla tua scelta)?\n1. CSV Locale\n2. Airtable");
+                            string saveType = Console.ReadLine();
+                            // Local
+                            if (saveType.Equals("1", StringComparison.OrdinalIgnoreCase))
                             {
-                                string oggetti = string.Join(" - ", personaggio.Oggetti);
-                                if (pIndex == 0)
-                                {
-                                    sw.WriteLine($"{personaggio.Nome},{personaggio.Livello},{oggetti},{legend},{piazzamento},{mainAugument},{auguments[pIndex]},{tratti[pIndex].Nome},{tratti[pIndex].Livello}");
-                                }
-                                else if (pIndex == 1)
-                                {
-                                    sw.WriteLine($"{personaggio.Nome},{personaggio.Livello},{oggetti},,,,{auguments[pIndex]},{tratti[pIndex].Nome},{tratti[pIndex].Livello}");
-                                } else if (pIndex == 2)
-                                {
-                                    if (tratti.Count > 2)
-                                    {
-                                        sw.WriteLine($"{personaggio.Nome},{personaggio.Livello},{oggetti},,,,{auguments[pIndex]},{tratti[pIndex].Nome},{tratti[pIndex].Livello}");
-                                    }
-                                    else
-                                    {
-                                        sw.WriteLine($"{personaggio.Nome},{personaggio.Livello},{oggetti},,,,{auguments[pIndex]},,,");
-
-                                    }
-                                }
-                                else
-                                {
-                                    if (pIndex <= tratti.Count - 1)
-                                    {
-                                        sw.WriteLine($"{personaggio.Nome},{personaggio.Livello},{oggetti},,,,,{tratti[pIndex].Nome},{tratti[pIndex].Livello}");
-                                    }
-                                    else
-                                    {
-                                        sw.WriteLine($"{personaggio.Nome},{personaggio.Livello},{oggetti},,,,,,");
-                                    }
-                                }
-                            }
-                            else
+                                dataManager.LocalSave(champions, auguments, traits, placement, legend, mainAugument);
+                                saveIsOk = true;
+                                
+                            } 
+                            // Airtable 
+                            else if (saveType.Equals("2", StringComparison.OrdinalIgnoreCase))
                             {
-                                if (pIndex == 0)
-                                {
-                                    sw.WriteLine($"{personaggio.Nome},{personaggio.Livello},,{legend},{piazzamento},{mainAugument},{auguments[pIndex]},{tratti[pIndex].Nome},{tratti[pIndex].Livello}");
-                                }
-                                else if (pIndex == 1)
-                                {
-                                    sw.WriteLine($"{personaggio.Nome},{personaggio.Livello},,,,,{auguments[pIndex]},{tratti[pIndex].Nome},{tratti[pIndex].Livello}");
-                                } else if (pIndex == 2)
-                                {
-                                    if (tratti.Count > 2)
-                                    {
-                                        sw.WriteLine($"{personaggio.Nome},{personaggio.Livello},,,,,{auguments[pIndex]},{tratti[pIndex].Nome},{tratti[pIndex].Livello}");
-                                    }
-                                    else
-                                    {
-                                        sw.WriteLine($"{personaggio.Nome},{personaggio.Livello},,,,,{auguments[pIndex]},,,");
-                                    }
-                                    
-                                } else 
-                                {
-                                    if (pIndex <= tratti.Count - 1)
-                                    {
-                                        sw.WriteLine($"{personaggio.Nome},{personaggio.Livello},,,,,,{tratti[pIndex].Nome},{tratti[pIndex].Livello}");
-                                    }
-                                    else
-                                    {
-                                        sw.WriteLine($"{personaggio.Nome},{personaggio.Livello},,,,,,");
-                                    }
-                                }
-                            }
-
-                            pIndex++;
-                        }
-
-                        if (tratti.Count > personaggi.Count)
-                        {
-                            if (pIndex >= personaggi.Count - 1)
+                                Console.WriteLine("Airtable integration in arrivo");
+                                await dataManager.AirtableSave(champions, auguments, traits, placement, legend,
+                                    mainAugument);
+                                saveIsOk = true;
+                            } else
                             {
-                                if (pIndex < tratti.Count - 1)
-                                {
-                                    sw.WriteLine($",,,,,,,{tratti[pIndex].Nome},{tratti[pIndex].Livello}");
-                                    pIndex++;
-                                }
+                                Console.WriteLine("Puoi scegliere solo 1 o 2. Riprova");
                             }
                         }
-                        
+                        SaveGameTask().Wait();
+                        if (saveIsOk)
+                        {
+                            break;
+                        }
                     }
-
-                    Console.WriteLine("File CSV creato con successo.");
-                    break;
+                    
                 }
-                
+                break;
             }
 
         }
