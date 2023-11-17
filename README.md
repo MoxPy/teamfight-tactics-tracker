@@ -1,13 +1,14 @@
 # Teamfight Tactics Tracker
 
-Teamfight Tactics Tracker è una semplice applicazione da riga di comando scritta in C# che ti consente di tenere traccia delle tue partite a Teamfight Tactics (TFT). Con questa app, puoi salvare in un file CSV informazioni sui personaggi, gli oggetti, i livelli, il piazzamento, le abilità scelte e i tratti usati nelle tue partite a TFT.
+Teamfight Tactics Tracker è una semplice applicazione da riga di comando scritta in C# che ti consente di tenere traccia delle tue partite a Teamfight Tactics (TFT). Con questa app, puoi salvare in un file CSV o su Airtable informazioni sui personaggi, gli oggetti, i livelli, il piazzamento, le abilità scelte e i tratti usati nelle tue partite a TFT.
 
 <img width="997" alt="Screenshot 2023-11-04 alle 19 49 03" src="https://github.com/MoxPy/teamfight-tactics-tracker/assets/80635030/b6410cc4-e701-4c73-9f9b-862484d453a1">
 <img width="618" alt="Screenshot 2023-11-04 alle 19 51 03" src="https://github.com/MoxPy/teamfight-tactics-tracker/assets/80635030/adcea685-b369-46bb-8d32-82fef8cd0f2f">
+<img width="1494" alt="Screenshot 2023-11-17 alle 17 58 47" src="https://github.com/MoxPy/teamfight-tactics-tracker/assets/80635030/a82123fa-0d88-481a-a1e1-f13820a85349">
 
 ### Caratteristiche
 Registra informazioni sulle tue partite a TFT, inclusi personaggi, oggetti, livelli, piazzamento, abilità e tratti.
-Archivia i dati delle tue partite in un file CSV per facilitare l'analisi e la revisione.
+Archivia i dati delle tue partite in un file CSV o su Airtable per facilitare l'analisi e la revisione.
 
 ### Come Utilizzare
 
@@ -38,6 +39,9 @@ Il file CSV contiene le seguenti colonne:
  - _Piazzamento_: Il tuo piazzamento nella partita.
  - _Abilità_: Abilità principale della partita (il campo in cui si gioca) e quelle scelte durante.
  - _Tratti_: Tratti associati alla tua squadra e il loro livello.
+
+## Formato Airtable
+Su Airtable è possibile caricare i dati seguendo lo stesso schema. Per utilizzare questa funzione è richiesto il base ID, il table ID e l'access token. Le informazioni sono disponibili qui: https://support.airtable.com/docs/creating-and-using-api-keys-and-access-tokens.
 
 ### Licenza
 Questa applicazione è open source ed è rilasciata con la Licenza Mozilla Public License 2.0.
